@@ -1,5 +1,6 @@
 .wrapper {
     --search-button-width: 52px;
+    --search-width: 500px;
 
     display: flex;
     align-items: center;
@@ -32,7 +33,7 @@
     overflow: hidden;
     z-index: 1;
     margin: 0;
-    width: 500px;
+    width: var(--search-width);
     border: 1px solid transparent;
 
     &:hover > .search-btn {
@@ -57,6 +58,18 @@
     input:not(:placeholder-shown) ~ .search-btn {
         color: rgba(22, 24, 35, 0.75);
     }
+}
+.search-result {
+    width: var(--search-width);
+}
+.search-title {
+    height: 30px;
+    padding: 5px 12px;
+    font-size: 14px;
+    line-height: 18px;
+    letter-spacing: 0.093px;
+    font-weight: 600;
+    color: rgba(22, 24, 35, 0.5);
 }
 .clear-btn,
 .loading {
