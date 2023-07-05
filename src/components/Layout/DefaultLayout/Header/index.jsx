@@ -2,18 +2,35 @@ import styles from './Header.module.scss';
 import classNames from 'classnames/bind';
 import image from '@/assets/image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCircleXmark, faSpinner, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
+import { faCircleXmark, faSpinner, faMagnifyingGlass, faEllipsisVertical } from '@fortawesome/free-solid-svg-icons';
 
 import Tippy from '@tippyjs/react/headless';
 import { useState } from 'react';
 import { Wrapper as PopperWrapper } from '@/components/Popper';
 import AccountItem from '@/components/AccountItem';
 import Button from '@/components/Button';
+import Menu from '@/components/Popper/Menu';
 
 const cx = classNames.bind(styles);
 
 function Header() {
     const [searchResult, setSearchResult] = useState([]);
+
+    const MENU_ITEM = [
+        {
+            icon: image.language,
+            title: 'English',
+        },
+        {
+            icon: image.question,
+            title: 'Feedback and help',
+            to: '/feedback',
+        },
+        {
+            icon: image.keyboard,
+            title: 'Keyboard and shotcuts',
+        },
+    ];
 
     setTimeout(() => {
         setSearchResult([]);
@@ -59,6 +76,11 @@ function Header() {
                         Upload
                     </Button>
                     <Button primary>Log in</Button>
+                    <Menu items={MENU_ITEM}>
+                        <button className={cx('more-btn')}>
+                            <FontAwesomeIcon icon={faEllipsisVertical} />
+                        </button>
+                    </Menu>
                 </div>
             </div>
         </header>

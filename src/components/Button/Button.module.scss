@@ -10,6 +10,11 @@
     background-color: var(--white);
     border: 1px solid transparent;
     user-select: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.4rem;
+
     span {
         display: flex;
         align-items: center;

@@ -43,8 +43,8 @@ function Button({
 
     const classes = cx('wrapper', { primary, outline, black, small, large, rounded, [className]: className });
     return (
-        <Component className={classes}>
-            <span>{children}</span>
+        <Component className={classes} {...props}>
+            {children}
         </Component>
     );
 }
