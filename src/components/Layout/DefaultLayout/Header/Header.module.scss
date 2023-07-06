@@ -102,6 +102,13 @@
 .actions {
     display: flex;
     align-items: center;
+    .action-header {
+        min-width: auto;
+        background-color: transparent;
+        margin-left: 16px;
+        height: 36px;
+        cursor: pointer;
+    }
 }
 .more-btn {
     font-size: 2rem;
@@ -113,4 +120,12 @@
 }
 .upload-btn {
     padding: 0px 20.3px;
+}
+.avatar-header {
+    width: 32px;
+    height: 32px;
+    margin-left: 24px;
+    object-fit: cover;
+    border-radius: 50%;
+    cursor: pointer;
 }

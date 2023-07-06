@@ -5,8 +5,12 @@ import styles from './Menu.module.scss';
 const cx = classNames.bind(styles);
 
 function MenuItem({ data, onClick }) {
+    const classes = cx('menu-item', {
+        separate: data.separate,
+    });
+
     return (
-        <Button className={cx('menu-item')} to={data.to} onClick={onClick}>
+        <Button className={classes} to={data.to} onClick={onClick}>
             <img src={data.icon} alt="" />
             {data.title}
         </Button>

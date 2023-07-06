@@ -4,7 +4,9 @@ import image from '@/assets/image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleXmark, faSpinner, faMagnifyingGlass, faEllipsisVertical } from '@fortawesome/free-solid-svg-icons';
 
-import Tippy from '@tippyjs/react/headless';
+import 'tippy.js/dist/tippy.css';
+import Tippy from '@tippyjs/react';
+import HeadlessTippy from '@tippyjs/react/headless';
 import { useState } from 'react';
 import { Wrapper as PopperWrapper } from '@/components/Popper';
 import AccountItem from '@/components/AccountItem';
@@ -15,6 +17,7 @@ const cx = classNames.bind(styles);
 
 function Header() {
     const [searchResult, setSearchResult] = useState([]);
+    const currentUser = true;
 
     const MENU_ITEM = [
         {
@@ -49,6 +52,32 @@ function Header() {
         },
     ];
 
+    const userMenu = [
+        {
+            icon: image.profile,
+            title: 'View Profile',
+        },
+        {
+            icon: image.tag,
+            title: 'Favorites',
+        },
+        {
+            icon: image.coin,
+            title: 'Get Coins',
+        },
+        {
+            icon: image.setting,
+            title: 'Settings',
+        },
+
+        ...MENU_ITEM,
+        {
+            icon: image.logout,
+            title: 'Log out',
+            separate: true,
+        },
+    ];
+
     setTimeout(() => {
         setSearchResult([]);
     }, 0);
@@ -63,7 +92,7 @@ function Header() {
                 <div className={cx('logo')}>
                     <img src={image.logo} alt="logo" />
                 </div>
-                <Tippy
+                <HeadlessTippy
                     interactive
                     visible={searchResult.length > 0}
                     render={(attrs) => (
@@ -90,17 +119,48 @@ function Header() {
                             <FontAwesomeIcon icon={faMagnifyingGlass} />
                         </button>
                     </div>
-                </Tippy>
+                </HeadlessTippy>
                 <div className={cx('actions')}>
-                    <Button black className={cx('upload-btn')}>
-                        <img src={image.plus} alt="logo" />
-                        Upload
-                    </Button>
-                    <Button primary>Log in</Button>
-                    <Menu items={MENU_ITEM} onChange={handleMenuChange}>
-                        <button className={cx('more-btn')}>
-                            <FontAwesomeIcon icon={faEllipsisVertical} />
-                        </button>
+                    {currentUser ? (
+                        <>
+                            <Button black className={cx('upload-btn')}>
+                                <img src={image.plus} alt="logo" />
+                                Upload
+                            </Button>
+                            <Tippy content="Messages" placement="bottom">
+                                <button className={cx('action-header')} to="/messages">
+                                    <img src={image.message} alt="" />
+                                </button>
+                            </Tippy>
+                            <Tippy content="Notify" placement="bottom">
+                                <button className={cx('action-header')}>
+                                    <img src={image.notify} alt="" />
+                                </button>
+                            </Tippy>
+                        </>
+                    ) : (
+                        <>
+                            <Button black className={cx('upload-btn')}>
+                                <img src={image.plus} alt="logo" />
+                                Upload
+                            </Button>
+                            <Button primary>Log in</Button>
+                        </>
+                    )}
+                    <Menu items={currentUser ? userMenu : MENU_ITEM} onChange={handleMenuChange}>
+                        {currentUser ? (
+                            <img
+                                className={cx('avatar-header')}
+                                src="https://cdn.popsww.com/blog/sites/2/2022/02/demon-slayer-nezuko.jpg"
+                                alt="Ahihi"
+                            />
+                        ) : (
+                            <>
+                                <button className={cx('more-btn')}>
+                                    <FontAwesomeIcon icon={faEllipsisVertical} />
+                                </button>
+                            </>
+                        )}
                     </Menu>
                 </div>
             </div>
