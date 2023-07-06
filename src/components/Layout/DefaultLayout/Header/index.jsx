@@ -20,6 +20,19 @@ function Header() {
         {
             icon: image.language,
             title: 'English',
+            subMenu: {
+                title: 'Language',
+                data: [
+                    {
+                        code: 'en',
+                        title: 'English',
+                    },
+                    {
+                        code: 'vi',
+                        title: 'Tiếng Việt',
+                    },
+                ],
+            },
         },
         {
             icon: image.question,
@@ -30,11 +43,19 @@ function Header() {
             icon: image.keyboard,
             title: 'Keyboard and shotcuts',
         },
+        {
+            icon: image.mode,
+            title: 'Dark mode',
+        },
     ];
 
     setTimeout(() => {
         setSearchResult([]);
     }, 0);
+
+    const handleMenuChange = (menuItem) => {
+        console.log(menuItem);
+    };
 
     return (
         <header className={cx('wrapper')}>
@@ -59,7 +80,7 @@ function Header() {
                     )}
                 >
                     <div className={cx('search')}>
-                        <input placeholder="Search account and video" spellCheck={false} />
+                        <input placeholder="Search" spellCheck={false} />
                         <button className={cx('clear-btn')}>
                             <FontAwesomeIcon icon={faCircleXmark} />
                         </button>
@@ -71,12 +92,12 @@ function Header() {
                     </div>
                 </Tippy>
                 <div className={cx('actions')}>
-                    <Button black>
+                    <Button black className={cx('upload-btn')}>
                         <img src={image.plus} alt="logo" />
                         Upload
                     </Button>
                     <Button primary>Log in</Button>
-                    <Menu items={MENU_ITEM}>
+                    <Menu items={MENU_ITEM} onChange={handleMenuChange}>
                         <button className={cx('more-btn')}>
                             <FontAwesomeIcon icon={faEllipsisVertical} />
                         </button>
