@@ -11,7 +11,7 @@ function MenuItem({ data, onClick }) {
 
     return (
         <Button className={classes} to={data.to} onClick={onClick}>
-            <img src={data.icon} alt="" />
+            {data.icon}
             {data.title}
         </Button>
     );

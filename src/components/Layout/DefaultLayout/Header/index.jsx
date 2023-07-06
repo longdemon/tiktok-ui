@@ -12,6 +12,21 @@ import { Wrapper as PopperWrapper } from '@/components/Popper';
 import AccountItem from '@/components/AccountItem';
 import Button from '@/components/Button';
 import Menu from '@/components/Popper/Menu';
+import {
+    CoinIcon,
+    KeyboardIcon,
+    LanguageIcon,
+    LogoutIcon,
+    MessageIcon,
+    ModeIcon,
+    NotifyIcon,
+    PlusIcon,
+    ProfileIcon,
+    QuestionIcon,
+    SettingIcon,
+    TagIcon,
+} from '@/components/Icons';
+import Image from '@/components/Image';
 
 const cx = classNames.bind(styles);
 
@@ -21,7 +36,7 @@ function Header() {
 
     const MENU_ITEM = [
         {
-            icon: image.language,
+            icon: <LanguageIcon />,
             title: 'English',
             subMenu: {
                 title: 'Language',
@@ -38,41 +53,41 @@ function Header() {
             },
         },
         {
-            icon: image.question,
+            icon: <QuestionIcon />,
             title: 'Feedback and help',
             to: '/feedback',
         },
         {
-            icon: image.keyboard,
-            title: 'Keyboard and shotcuts',
+            icon: <KeyboardIcon />,
+            title: 'Keyboard shotcuts',
         },
         {
-            icon: image.mode,
+            icon: <ModeIcon />,
             title: 'Dark mode',
         },
     ];
 
     const userMenu = [
         {
-            icon: image.profile,
+            icon: <ProfileIcon />,
             title: 'View Profile',
         },
         {
-            icon: image.tag,
+            icon: <TagIcon />,
             title: 'Favorites',
         },
         {
-            icon: image.coin,
+            icon: <CoinIcon />,
             title: 'Get Coins',
         },
         {
-            icon: image.setting,
+            icon: <SettingIcon />,
             title: 'Settings',
         },
 
         ...MENU_ITEM,
         {
-            icon: image.logout,
+            icon: <LogoutIcon />,
             title: 'Log out',
             separate: true,
         },
@@ -124,24 +139,24 @@ function Header() {
                     {currentUser ? (
                         <>
                             <Button black className={cx('upload-btn')}>
-                                <img src={image.plus} alt="logo" />
+                                <PlusIcon />
                                 Upload
                             </Button>
                             <Tippy content="Messages" placement="bottom">
                                 <button className={cx('action-header')} to="/messages">
-                                    <img src={image.message} alt="" />
+                                    <MessageIcon />
                                 </button>
                             </Tippy>
                             <Tippy content="Notify" placement="bottom">
                                 <button className={cx('action-header')}>
-                                    <img src={image.notify} alt="" />
+                                    <NotifyIcon />
                                 </button>
                             </Tippy>
                         </>
                     ) : (
                         <>
                             <Button black className={cx('upload-btn')}>
-                                <img src={image.plus} alt="logo" />
+                                <PlusIcon />
                                 Upload
                             </Button>
                             <Button primary>Log in</Button>
@@ -149,10 +164,11 @@ function Header() {
                     )}
                     <Menu items={currentUser ? userMenu : MENU_ITEM} onChange={handleMenuChange}>
                         {currentUser ? (
-                            <img
+                            <Image
                                 className={cx('avatar-header')}
                                 src="https://cdn.popsww.com/blog/sites/2/2022/02/demon-slayer-nezuko.jpg"
-                                alt="Ahihi"
+                                alt="avatar"
+                                placeholder={image.noAvatar}
                             />
                         ) : (
                             <>
