@@ -24,6 +24,8 @@ import {
 } from '@/components/Icons';
 import Image from '@/components/Image';
 import Search from '../../Search';
+import { Link } from 'react-router-dom';
+import routesConfig from '@/config/routes';
 
 const cx = classNames.bind(styles);
 
@@ -97,7 +99,9 @@ function Header() {
         <header className={cx('wrapper')}>
             <div className={cx('inner')}>
                 <div className={cx('logo')}>
-                    <img src={image.logo} alt="logo" />
+                    <Link to={routesConfig.home}>
+                        <img src={image.logo} alt="logo" />
+                    </Link>
                 </div>
                 <Search />
                 <div className={cx('actions')}>

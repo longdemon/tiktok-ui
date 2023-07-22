@@ -22,8 +22,12 @@
 //Header
 .header {
     position: relative;
+    flex-shrink: 0;
     height: 50px;
     margin-top: -8px;
+}
+.menu-body {
+    overflow: hidden auto;
 }
 .back-btn {
     width: 50px;
